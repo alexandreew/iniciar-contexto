@@ -2,6 +2,8 @@
 
 Comando personalizado para [Claude Code](https://claude.com/claude-code) que analisa um projeto e cria (ou atualiza) uma estrutura de contexto persistente, para reduzir a dependência de memória de sessão e facilitar handoffs entre sessões futuras.
 
+> Nota: `.claude/commands/*.md` é o formato clássico de comando personalizado. A documentação oficial já trata esse formato como legado em favor de `.claude/skills/<nome>/SKILL.md`, mas o formato antigo continua funcionando normalmente. Se preferir o formato novo, o conteúdo deste arquivo pode ser movido para `.claude/skills/iniciar-contexto/SKILL.md` sem mudanças no texto.
+
 ## O que ele faz
 
 - Inventaria o que já existe no projeto (`CLAUDE.md`, `.claude/`, `README.md`, handoffs, changelogs) antes de criar qualquer coisa nova.
