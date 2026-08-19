@@ -17,17 +17,45 @@ Comando personalizado para [Claude Code](https://claude.com/claude-code) que ana
   - `.claude/project-index.md` e `.claude/README.md`: navegação e explicação da própria estrutura.
 - Define regras de manutenção: quando um arquivo cresce demais, como dividir e arquivar sem perder rastreabilidade de pendências.
 
+## Onde funciona
+
+Comandos personalizados são um recurso do Claude Code, o mesmo motor por trás de várias interfaces diferentes. Funciona em:
+
+- **CLI** (terminal)
+- **Extensão VS Code**
+- **Plugin JetBrains** (IntelliJ, PyCharm, Android Studio, WebStorm, PhpStorm, GoLand)
+- **App Desktop**, aba **Code** (não funciona nas abas Chat nem Cowork, que são produtos diferentes)
+- **Claude Code Web** (claude.ai/code), com a ressalva de instalação abaixo
+
+Não funciona no Claude Desktop (app de chat comum) nem no claude.ai (chat comum), que não têm acesso ao sistema de arquivos nem executam comandos personalizados.
+
 ## Instalação
+
+### CLI, VS Code, JetBrains e Desktop (aba Code)
+
+Essas interfaces compartilham a mesma configuração local (`CLAUDE.md`, `.claude/`, MCP, hooks, skills).
 
 **Uso global** (disponível em todos os projetos que você abrir):
 
 1. Baixe `iniciar-contexto.md` deste repositório.
 2. Coloque em `~/.claude/commands/iniciar-contexto.md`.
 
-**Uso em um projeto específico** (fica disponível para qualquer pessoa que abra essa pasta no Claude Code):
+**Uso em um projeto específico** (fica disponível para qualquer pessoa que abra essa pasta em qualquer uma dessas interfaces):
 
 1. Baixe `iniciar-contexto.md` deste repositório.
 2. Coloque em `<projeto>/.claude/commands/iniciar-contexto.md`.
+
+No app Desktop, abra a aba **Code** (não Chat, não Cowork), selecione ambiente **Local** e a pasta do projeto. O comando aparece ao digitar `/` ou clicar `+` > **Slash commands**, junto dos comandos nativos.
+
+### Claude Code Web (claude.ai/code)
+
+Sessões na web rodam numa VM na nuvem que clona o repositório do GitHub conectado à conta. Não existe pasta pessoal (`~/.claude/commands/`) nesse ambiente, então o comando só fica disponível se estiver dentro do próprio repositório:
+
+1. Baixe `iniciar-contexto.md` deste repositório.
+2. Coloque em `<projeto>/.claude/commands/iniciar-contexto.md` no repositório que você vai usar na sessão web.
+3. Faça commit e push desse arquivo para o GitHub.
+4. Abra uma sessão em [claude.ai/code](https://claude.ai/code) apontando para esse repositório (ou rode `claude --cloud` a partir do CLI, na pasta do repositório).
+5. O comando `/iniciar-contexto` aparece disponível na sessão assim que o repositório é clonado.
 
 ## Uso
 
@@ -44,6 +72,15 @@ Ou apontando para outro caminho:
 ```
 
 O comando vai perguntar o que precisar (ex: se a pasta é um projeto específico ou uma raiz que agrupa vários) antes de criar qualquer arquivo.
+
+## Fontes
+
+Informações sobre onde e como o Claude Code funciona, baseadas na documentação oficial:
+
+- [Get started with the desktop app](https://code.claude.com/docs/en/desktop-quickstart)
+- [Use Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web)
+- [Use Claude Code in VS Code](https://code.claude.com/docs/en/vs-code)
+- [Slash Commands in the SDK](https://code.claude.com/docs/en/agent-sdk/slash-commands)
 
 ## Licença
 
