@@ -49,11 +49,11 @@ No app Desktop, abra a aba **Code** (não Chat, não Cowork), selecione ambiente
 
 ### Claude Code Web (claude.ai/code)
 
-Sessões na web rodam numa VM na nuvem que clona o repositório do GitHub conectado à conta. Não existe pasta pessoal (`~/.claude/commands/`) nesse ambiente, então o comando só fica disponível se estiver dentro do próprio repositório:
+Sessões na web rodam numa VM na nuvem que clona o remoto do GitHub, não o seu checkout local. Não existe pasta pessoal (`~/.claude/commands/`) nesse ambiente, então o comando só fica disponível se estiver no remoto que a VM clona:
 
 1. Baixe `iniciar-contexto.md` deste repositório.
 2. Coloque em `<projeto>/.claude/commands/iniciar-contexto.md` no repositório que você vai usar na sessão web.
-3. Faça commit e push desse arquivo para o GitHub.
+3. Faça commit e **push** desse arquivo para o GitHub (a VM clona o remoto na branch atual, não o seu checkout local; commits sem push não chegam até ela).
 4. Abra uma sessão em [claude.ai/code](https://claude.ai/code) apontando para esse repositório (ou rode `claude --cloud` a partir do CLI, na pasta do repositório).
 5. O comando `/iniciar-contexto` aparece disponível na sessão assim que o repositório é clonado.
 
@@ -77,8 +77,9 @@ O comando vai perguntar o que precisar (ex: se a pasta é um projeto específico
 
 Informações sobre onde e como o Claude Code funciona, baseadas na documentação oficial:
 
+- [Desktop application](https://code.claude.com/docs/en/desktop) (confirma as três abas Chat/Cowork/Code)
 - [Get started with the desktop app](https://code.claude.com/docs/en/desktop-quickstart)
-- [Use Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web)
+- [Use Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) (confirma que a VM clona o remoto do GitHub, não o checkout local)
 - [Use Claude Code in VS Code](https://code.claude.com/docs/en/vs-code)
 - [Slash Commands in the SDK](https://code.claude.com/docs/en/agent-sdk/slash-commands)
 
